@@ -1,0 +1,9 @@
+db.Data.find({"term1":{$lte:36}}).count();
+
+db.Data.aggregate([{$group:{_id:"term1",avg_term1:{$avg:"$term1"}}}]);
+
+db.Data.find({"term1":{$gte:37},"term2":{$gte:37},"term3":{$gte:37}});
+
+db.Data.find({"term1":{$gte:37},"term2":{$gte:37},"term3":{$gte:37}}).count();
+
+db.Data.aggregate([{$project:{avg:{$avg:["$term1","$term2","$term3"]}}}]);
